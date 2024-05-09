@@ -138,7 +138,9 @@ head(daily_sleep)
 # The 12:00:00 AM time stamp on each observation is redundant so we should remove it to make the data easier to work with
 daily_sleep$SleepDay <- (gsub('12:00:00 AM', '', daily_sleep$SleepDay))
 # Renaming column
-colnames(daily_sleep)[2] = "Date"
+head(daily_sleep)
+daily_sleep %>% 
+  rename(Date = SleepDay)
 # View updated data
 head(daily_sleep)
 ```
@@ -151,7 +153,37 @@ head(daily_sleep)
     ## 5 1503960366 4/17/2016                  1                700            712
     ## 6 1503960366 4/19/2016                  1                304            320
 
+
 ``` r
+# Finally, the hourly_steps data
+head(hourly_steps)
+```
+
+    ##           Id          ActivityHour StepTotal
+    ## 1 1503960366 4/12/2016 12:00:00 AM       373
+    ## 2 1503960366  4/12/2016 1:00:00 AM       160
+    ## 3 1503960366  4/12/2016 2:00:00 AM       151
+    ## 4 1503960366  4/12/2016 3:00:00 AM         0
+    ## 5 1503960366  4/12/2016 4:00:00 AM         0
+    ## 6 1503960366  4/12/2016 5:00:00 AM         0
+
+``` r
+# In this case, the time associated with the date is relevant so we don't want to remove it,
+#   but the data may be easier to work with if we separate it into it's own column
+hourly_steps <- hourly_steps %>%  separate(ActivityHour,into = c("Date", "Hour"),sep = " ")
+# View the updated dataframe
+head(hourly_steps)
+```
+
+    ##           Id      Date         Hour StepTotal
+    ## 1 1503960366 4/12/2016  12:00:00 AM       373
+    ## 2 1503960366 4/12/2016   1:00:00 AM       160
+    ## 3 1503960366 4/12/2016   2:00:00 AM       151
+    ## 4 1503960366 4/12/2016   3:00:00 AM         0
+    ## 5 1503960366 4/12/2016   4:00:00 AM         0
+    ## 6 1503960366 4/12/2016   5:00:00 AM         0
+
+    ``` r
 # Next, the daily_activity data
 head(daily_activity)
 ```
@@ -224,35 +256,6 @@ head(daily_activity)
     ## 5     1863
     ## 6     1728
 
-``` r
-# Finally, the hourly_steps data
-head(hourly_steps)
-```
-
-    ##           Id          ActivityHour StepTotal
-    ## 1 1503960366 4/12/2016 12:00:00 AM       373
-    ## 2 1503960366  4/12/2016 1:00:00 AM       160
-    ## 3 1503960366  4/12/2016 2:00:00 AM       151
-    ## 4 1503960366  4/12/2016 3:00:00 AM         0
-    ## 5 1503960366  4/12/2016 4:00:00 AM         0
-    ## 6 1503960366  4/12/2016 5:00:00 AM         0
-
-``` r
-# In this case, the time associated with the date is relevant so we don't want to remove it,
-#   but the data may be easier to work with if we separate it into it's own column
-hourly_steps <- hourly_steps %>% separate(ActivityHour, c("Date", "Hour"), sep = "^\\S*\\K")
-# View the updated dataframe
-head(hourly_steps)
-```
-
-    ##           Id      Date         Hour StepTotal
-    ## 1 1503960366 4/12/2016  12:00:00 AM       373
-    ## 2 1503960366 4/12/2016   1:00:00 AM       160
-    ## 3 1503960366 4/12/2016   2:00:00 AM       151
-    ## 4 1503960366 4/12/2016   3:00:00 AM         0
-    ## 5 1503960366 4/12/2016   4:00:00 AM         0
-    ## 6 1503960366 4/12/2016   5:00:00 AM         0
-
 Because the Id variable is currently numerical but should be treated as
 nominal,we need to change how it is formatted in each data set.
 
@@ -265,7 +268,10 @@ hourly_steps$Id <- as.character(hourly_steps$Id)
 ## Data Exploration
 
 1.  Graph variables of interest, check for outliers in the data
-
+``` r
+ggplot(data=daily_activity, aes(x=TotalSteps, y=SedentaryMinutes)) + geom_point(color="blue")
+```
+https://1ae363736e084626aeef64242997542f.app.posit.cloud/graphics/plot.png?width=590&height=351&randomizer=1941354338
 ``` r
 summary(daily_activity$TotalSteps)
 ```
