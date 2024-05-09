@@ -589,7 +589,7 @@ the following smart device usage trends:
   day they took the least amount of steps
 - Participants took the most steps on Tuesdays and Saturdays.
 - On average, the fewest steps were taken at 3:00 and the most steps
-  taken at 18:00
+  taken at 19:00
 - On average, participants slept about 390 minues, or 6.5 hours per
   night
 - Users who take more steps per day are more likely to engage in “very
@@ -604,15 +604,12 @@ about how customers are currently using smart fitness devices:
 
 1.  Very few customers utilized the weight log feature, so this does not
     appear to be a selling point. Focus on marketing other features such
-    as activity, sleep, and steps tracking, and consider further
-    research into how to make the weight log feature more marketable
+    as activity, sleep, and steps tracking.
 
 2.  Our data shows that when active, participants engaged the most in
     “light” activity and did not have many “very active” minutes each
     day. The company could add a “level up” feature in which
-    participants can earn points based on time spent being active, with
-    higher levels of activity earning more points. This could motivate
-    users to engage in active minutes more often.
+    participants can earn rewards such as points based on time spent being active.
 
 3.  There’s about a 1000 step decrease on Sundays compared to the other
     days of the week. A notification on Sunday mornings with a goal to
@@ -620,14 +617,12 @@ about how customers are currently using smart fitness devices:
     7-day streak could help close this gap and encourage customers to
     use the device all days of the week.
 
-4.  Based on data showing the most usage around 6pm, it seems likely
+4.  Based on data showing the most usage around 7pm, it seems likely
     most users have typical work hours during the day and get most of
     their steps in after work. An ad targeted towards working adults
     focused on easily tracking steps throughout their busy days could be
-    effective. A reminder notification around 12pm and 8pm can encourage
-    users to increase their activity levels during other break times
-    such as lunch and after dinner as well.
-
+    effective.
+    
 5.  On average, participants got less than the CDC recommended 7 hours
     of sleep per night. Continue marketing the device’s sleep tracking
     feature as participants who are not getting enough sleep may want a
