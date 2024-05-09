@@ -222,7 +222,7 @@ head(daily_activity)
 #   so we will not use them in our analysis and can remove them
 daily_activity <- daily_activity[c(-6, -10)]
 # Renaming column
-colnames(daily_activity)[2] = "Date"
+daily_activity <- daily_activity %>%  rename('Date' = ActivityDate)
 # View updated Data
 head(daily_activity)
 ```
@@ -271,6 +271,10 @@ hourly_steps$Id <- as.character(hourly_steps$Id)
 ``` r
 ggplot(data=daily_activity, aes(x=TotalSteps, y=SedentaryMinutes)) + geom_point(color="blue")
 ```
+``` r
+# For the most part the graph shows that around 0-20,000 steps is where a majority of ppl are and total steps is not related to the sedentary minutes.
+# Marketing to people (9-5 workers) who spend a lot of sedentary minutes is still important.
+```
 https://1ae363736e084626aeef64242997542f.app.posit.cloud/graphics/plot.png?width=590&height=351&randomizer=1941354338
 ``` r
 summary(daily_activity$TotalSteps)
@@ -283,9 +287,7 @@ summary(daily_activity$TotalSteps)
 ggplot(daily_activity, aes(x = TotalSteps)) +
   geom_boxplot()
 ```
-
-![](Google-Analytics-Case-Study--1-_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
-![unnamed-chunk-8-1](https://user-images.githubusercontent.com/102825218/236005222-ff7b67fd-800b-4d9c-afba-32a3684f18b7.png)
+(https://1ae363736e084626aeef64242997542f.app.posit.cloud/graphics/plot.png?width=590&height=351&randomizer=-2020436851)
 
 ``` r
 # Most of the daily total steps appear to be around 4000-11000.
@@ -418,10 +420,10 @@ hourly_steps %>%
     ## # A tibble: 1 × 2
     ##   Hour          mean_steps
     ##   <chr>              <dbl>
-    ## 1 " 6:00:00 PM"       599.
+    ## 1 " 7:00:00 PM"       443.
 
 ``` r
-# Answer: 6:00PM with an average of about 600 steps
+# Answer: 7:00PM with an average of about 450 steps
 # Creating a dataframe with average hourly steps for later visualization
 mean_steps <- hourly_steps %>%
   group_by(Hour) %>%
@@ -457,14 +459,13 @@ head(steps_byId)
 
 ``` r
 ggplot(data=daily_activity, aes(x=TotalSteps, y=SedentaryMinutes)) + 
-  geom_point() + 
+  geom_point(color="red") + 
   geom_smooth() + 
   labs(title="Total Steps vs. Sedentary Minutes",
        x = "Steps", y = "Minutes")
 ```
 
-![](Google-Analytics-Case-Study--1-_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
-![unnamed-chunk-15-1](https://user-images.githubusercontent.com/102825218/236005681-7eb02a39-675a-4df3-ac5c-f3d4328dc9b0.png)
+https://1ae363736e084626aeef64242997542f.app.posit.cloud/graphics/plot.png?width=590&height=199&randomizer=-1029078781
 
 There appears to be no correlation between total daily steps taken and
 sedentary minutes. We can confirm with a simple linear regression:
@@ -507,10 +508,7 @@ ggplot(mean_sleep, aes(x = Id, y = mean_sleep)) +
   theme(axis.text.x = element_text(angle = 90)) +
   geom_hline(yintercept = mean(mean_sleep$mean_sleep), color = "red")
 ```
-
-![](Google-Analytics-Case-Study--1-_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
-![unnamed-chunk-17-1](https://user-images.githubusercontent.com/102825218/236005780-8306a808-0a37-4d30-ac60-b20a558eff5b.png)
-
+https://1ae363736e084626aeef64242997542f.app.posit.cloud/graphics/plot.png?width=590&height=237&randomizer=-277854386
 
 The graph shows the average sleep of each participant individually, as
 well as how their sleep compares to the overall average across all
@@ -525,9 +523,8 @@ ggplot(mean_steps, aes(x = Hour, y = mean_steps)) +
   labs(title = "Average Steps Taken per Hour of Day",
        x = "Hour", y = "Average Steps")
 ```
+![image](https://github.com/AJANZ1/Google-Case-study/assets/117528970/30690f80-2963-4267-babe-010826f0c349)
 
-![](Google-Analytics-Case-Study--1-_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
-![unnamed-chunk-18-1](https://user-images.githubusercontent.com/102825218/236005815-3fa7e215-a91a-4b09-a445-10641ea4eaaf.png)
 
 
 We can see that the most steps were taken in the evening, from 5-7pm,
@@ -569,16 +566,15 @@ ggplot(combined_data, aes(x = mean_steps_id, y = sum_very)) +
        x = "Average Steps", y = "Very Active Minutes")
 ```
 
-![](Google-Analytics-Case-Study--1-_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
-![unnamed-chunk-19-1](https://user-images.githubusercontent.com/102825218/236005852-fbc07556-fe67-46f5-8e90-b55afeecbfbe.png)
+![image](https://github.com/AJANZ1/Google-Case-study/assets/117528970/8eb1ba60-9697-4fc5-a8a5-d08e65cc05c0)
+
 
 
 We can see a moderate upwards trend of “very active minutes” increasing
 as average steps in a day increases.
 
 5.  I completed additional visualizations in Tableau, which can be
-    viewed here: [Bellabeat Dashboard -
-    Tableau](https://public.tableau.com/views/BellabeatCaseStudy_16572546536690/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link)
+    viewed here: 
 
 <div class='tableauPlaceholder' id='viz1657267313918' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Be&#47;BellabeatCaseStudy_16572546536690&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='BellabeatCaseStudy_16572546536690&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Be&#47;BellabeatCaseStudy_16572546536690&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>     
 
