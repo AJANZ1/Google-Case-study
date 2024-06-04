@@ -275,7 +275,8 @@ ggplot(data=daily_activity, aes(x=TotalSteps, y=SedentaryMinutes)) + geom_point(
 # For the most part the graph shows that around 0-20,000 steps is where a majority of ppl are and total steps is not related to the sedentary minutes.
 # Marketing to people (9-5 workers) who spend a lot of sedentary minutes is still important.
 ```
-https://1ae363736e084626aeef64242997542f.app.posit.cloud/graphics/plot.png?width=590&height=351&randomizer=1941354338
+![image](https://github.com/AJANZ1/Google-Case-study/assets/117528970/f2e27171-c3f5-4c89-ac41-25c94ed114f2)
+
 ``` r
 summary(daily_activity$TotalSteps)
 ```
@@ -287,7 +288,7 @@ summary(daily_activity$TotalSteps)
 ggplot(daily_activity, aes(x = TotalSteps)) +
   geom_boxplot()
 ```
-(https://1ae363736e084626aeef64242997542f.app.posit.cloud/graphics/plot.png?width=590&height=351&randomizer=-2020436851)
+![image](https://github.com/AJANZ1/Google-Case-study/assets/117528970/4e167d98-00c2-48b5-a29e-bddd87fcccd1)
 
 ``` r
 # Most of the daily total steps appear to be around 4000-11000.
@@ -465,7 +466,8 @@ ggplot(data=daily_activity, aes(x=TotalSteps, y=SedentaryMinutes)) +
        x = "Steps", y = "Minutes")
 ```
 
-https://1ae363736e084626aeef64242997542f.app.posit.cloud/graphics/plot.png?width=590&height=199&randomizer=-1029078781
+![image](https://github.com/AJANZ1/Google-Case-study/assets/117528970/efa6a36a-065a-4925-8d50-0623306861d1)
+
 
 There appears to be no correlation between total daily steps taken and
 sedentary minutes. We can confirm with a simple linear regression:
@@ -508,7 +510,7 @@ ggplot(mean_sleep, aes(x = Id, y = mean_sleep)) +
   theme(axis.text.x = element_text(angle = 90)) +
   geom_hline(yintercept = mean(mean_sleep$mean_sleep), color = "red")
 ```
-https://1ae363736e084626aeef64242997542f.app.posit.cloud/graphics/plot.png?width=590&height=237&randomizer=-277854386
+![image](https://github.com/AJANZ1/Google-Case-study/assets/117528970/d2518a86-b814-4a0d-888c-5c150c7b8788)
 
 The graph shows the average sleep of each participant individually, as
 well as how their sleep compares to the overall average across all
@@ -540,6 +542,7 @@ combined_data <- merge(activity_id, steps_byId, by = "Id")
 # Putting just the numerical variables into a separate dataframe, then running a correlation matrix
 num_data <- combined_data[-1]
 cor(num_data)
+
 ```
 
     ##                  sum_very sum_fairly sum_lightly     sum_sed mean_steps_id
